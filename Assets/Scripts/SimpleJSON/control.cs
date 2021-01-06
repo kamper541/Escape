@@ -41,37 +41,7 @@ public class control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // webView.OnMessageReceived += (view, message) => {
-        //     // if(!a){
-        //     //     // JSONNode node = JSON.Parse(message.Path);
-        //     //     // string score = node["body"].Value;
-        //     //     // print(score);
-        //     //     JObject o = JObject.Parse(message.Path);
-        //     //     print((string)o["body"][0]["type"]);
-        //     //     print(message.Path);
-        //     //     print(JsonUtility.ToJson(message.Path));
-        //     //     a = true;
-        //     // }
-        //     // print(message.RawMessage);
-        //     // if(message && !a){
-        //     //     JObject o = JObject.Parse(message.Path);
-        //     //     print((string)o["body"][0]["type"]);
-        //     //     print(message.Path);
-        //     //     print(JsonUtility.ToJson(message.Path));
-        //     //     a = true;   
-        //     // }else{
-        //     //     a = false;
-        //     // }
-        //     if(ans == null){
-        //         JObject o = JObject.Parse(message.Path);
-        //         ans = JObject.Parse(message.Path);
-        //         print((string)o["body"][0]["type"]);
-        //         print(message.Path);
-        //         a = true;
-        //     }else{
-
-        //     }
-        // };  
+        
     }
 
     void FixedUpdate() {
@@ -79,7 +49,7 @@ public class control : MonoBehaviour
             JObject o = JObject.Parse(message.Path);
                 // ans = JObject.Parse(message.Path);
                 ReadFunc(o);
-                print(message.Path);
+                // print(message.Path);
                 return;
         };
         webView = null;
@@ -87,33 +57,21 @@ public class control : MonoBehaviour
     }
 
     void ReadFunc(JObject o) {
-        print((string)o["body"][0]["type"]);
-        print(o["body"].First);
-        print(o["body"].Type);
+        // print((string)o["body"][0]["type"]);
+        // print(o["body"]);
+        // print(o["body"].Type);
+        // print(o["body"]);
         int i = 0;
-        // while (o["body"][i] != null){
-        //     i++;
-        // }
         JToken To_send = o["body"].First;
         int length = FindLength(To_send);
         print(length);
-        string[] ans = new string[length];
-        while(i < length){
-            ans[i] = (string)o["body"][i]["type"];
-            i++;
-        }
+        JToken[] To_Look = inside(To_send,length);
         i = 0;
         while(i < length){
-            print(ans[i]);
+            // print(ans[i]);
+            print(To_Look[i]);
             i++;
         }
-
-        // string[] ans = new string[(string)o["body"].Length];
-        // int count = 0;
-        // while((string)o["body"].Length > count){
-        //     ans[count] = (string)o["body"][i]["type"];
-        // }
-        // print(ans);
     }
 
     int FindLength(JToken p){
@@ -125,4 +83,18 @@ public class control : MonoBehaviour
         }
         return i;
     }
+
+    JToken[] inside(JToken aa, int len){
+        JToken save = aa;
+        JToken[] ans = new JToken[len];
+        int i = 0;
+        while(save != null){
+            ans[i] = save;
+            save = save.Next;
+            i++;
+        }
+
+        return ans;
+    }
+
 }
