@@ -12,7 +12,11 @@ public class control : MonoBehaviour
     RectTransform myUITransfrom;
 
     static bool a = false;
-    // JObject ans = null;
+    static private JToken[] To_Look; 
+
+    static JToken[] get_command(){
+        return To_Look;
+    }
 
     void Start()
     {
@@ -25,6 +29,7 @@ public class control : MonoBehaviour
         webView.ReferenceRectTransform = myUITransfrom;
         // webView.Load("https://www.google.com");
         webView.Load("https://edo-controller.web.app");
+        // webView.Load("localhost:5000");
         webView.CleanCache();
         UniWebView.ClearCookies();
         webView.AddUrlScheme("code");
@@ -47,9 +52,15 @@ public class control : MonoBehaviour
     void FixedUpdate() {
         webView.OnMessageReceived += (view, message) => {
             JObject o = JObject.Parse(message.Path);
-                // ans = JObject.Parse(message.Path);
-                ReadFunc(o);
-                // print(message.Path);
+                // ReadFunc(o);
+            JArray items = (JArray)o["payload"];
+            int l = items.Count;
+            print(l);
+                // print(o["payload"][0].Type);
+                // JObject j = JObject.Parse((string)o["payload"][0]);
+                // print(j["body"]);
+                
+                print(message.Path);
                 return;
         };
         webView = null;
@@ -57,19 +68,18 @@ public class control : MonoBehaviour
     }
 
     void ReadFunc(JObject o) {
-        // print((string)o["body"][0]["type"]);
-        // print(o["body"]);
+        // print(o);
         // print(o["body"].Type);
         // print(o["body"]);
         int i = 0;
-        JToken To_send = o["body"].First;
+        JToken To_send = o["payload"];
         int length = FindLength(To_send);
         print(length);
-        JToken[] To_Look = inside(To_send,length);
+        // To_Look = inside(To_send,length);
         i = 0;
         while(i < length){
             // print(ans[i]);
-            print(To_Look[i]);
+            // print(To_Look[i]);
             i++;
         }
     }
