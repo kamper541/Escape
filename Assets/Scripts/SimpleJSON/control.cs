@@ -60,8 +60,8 @@ public class control : MonoBehaviour
                 // JObject j = JObject.Parse((string)o["payload"][0]);
                 // print(j["body"]);
                 
-                print(message.Path);
-                return;
+            print(message.Path);
+            return;
         };
         webView = null;
         
