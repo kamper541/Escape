@@ -22,14 +22,18 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 oldEulerAngles;
 
-    float zPost;
+    public  float zPost;
 
-    float angle;
+    public  float angle;
 
-    int framePerU;
+    public  int framePerU;
 
-    public static bool getFinish(){
+    private static float step;
+
+
+    public  bool getFinish(){
         return finish;
+
     }
 
     private void Start() {
@@ -73,8 +77,13 @@ public class PlayerMovement : MonoBehaviour
         // else if(RunBlock.getRunning() == true){
         // MovePlayer(RunBlock.getSteps());
         // }
-        if(Listener.check == true){
-            MovePlayer(1);
+        if(Listener.get_to_move() == true){
+            print("move");
+            MovePlayer(Listener.get_steps());
+        }
+        else if(Listener.get_to_turn() == true){
+            print("turn");
+            RotatePlayer(Listener.get_degree());
         }
     }
     void GetInput(){
@@ -93,8 +102,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void MovePlayer(float ans){
         Debug.Log("Moving Player" + ans);
-            if(framePerU == 135){
+            if(framePerU == 20 * ans){
                 // RunBlock.setRunning();
+                Listener.toggle_to_move();
+                print(Listener.get_to_move());
                 zPost = this.transform.localPosition.z;
                 framePerU = 0;
             }else{
@@ -118,8 +129,8 @@ public class PlayerMovement : MonoBehaviour
         // // yield return new WaitForSeconds(2f);
         // transform.Rotate(0 , 90 , 0);
         // }
-        transform.Rotate(0 , this.transform.rotation.y + 90 , 0);
-        // RunBlock.setRotating();
+        transform.Rotate(0 , this.transform.rotation.y + ans , 0);
+        Listener.toggle_to_turn();
         Debug.Log(angle);
     }
 

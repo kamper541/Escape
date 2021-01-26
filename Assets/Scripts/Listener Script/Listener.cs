@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
@@ -6,7 +7,40 @@ using Newtonsoft.Json.Linq;
 public class Listener : MonoBehaviour
 {
     JObject o = new JObject();
-    public static bool check = false;
+
+    private bool Activated = false;
+
+    private static bool to_move = false;
+
+    private static bool to_turn = false;
+
+    private static float steps;
+
+    private static float degree;
+
+    public static float get_steps(){
+        return steps;
+    }
+
+    public static float get_degree(){
+        return degree;
+    }
+
+    public static bool get_to_move(){
+        return to_move;
+    }
+
+    public static void toggle_to_move(){
+        to_move = false;
+    }
+
+    public static bool get_to_turn(){
+        return to_turn;
+    }
+
+    public static void toggle_to_turn(){
+        to_turn = false;
+    }
 
     //<--- get set
 
@@ -19,10 +53,45 @@ public class Listener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(control.Get_Begin()){
-            check = true;
-            o = control.Get_Payload();
+        if(!Activated){
+            if(control.Get_Begin()){
+                Activated = true;
+                try{
+                    JEnumerable<JToken> jt = control.Get_JToken();
+                    foreach(JToken token in jt){
+                        print(token);  
+                    }
+                    StartCoroutine(Reading_Block(jt));
+                }catch(Exception e){
+                    print(e);
+                }
+            }
+        }else{
+
         }
+    }
+
+    public IEnumerator Reading_Block(JEnumerable<JToken> jt_get){
+        foreach(JToken token in jt_get ){
+            print("Reading...");
+            if((string)token["name"] == "move"){
+                float val = (float)token["value"];
+                steps = val;
+                to_move = true;
+                yield return new WaitWhile(() => to_move == true);
+                steps = 0;
+            }
+            else if((string)token["name"] == "turn"){
+                float val = (float)token["value"];
+                degree = val;
+                to_turn = true;
+                yield return new WaitWhile(() => to_turn == true);
+                degree = 0;
+            }
+        }
+        print("Activated");
+        control.Set_Begin();
+        Activated = false;
     }
 
     
