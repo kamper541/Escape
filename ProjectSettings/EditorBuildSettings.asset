@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/test.unity
-    guid: c2f7c153b152b4a1b8ba05e9a3c0593e
   - enabled: 1
-    path: Assets/test1.unity
-    guid: 69fb3be51f7054be8ab36ddc12880ee8
+    path: Assets/Space Adventure/Scenes/Main Menu.unity
+    guid: d6016cbb779e99e48bf384386441f88e
+  - enabled: 1
+    path: Assets/Space Adventure/Scenes/Game.unity
+    guid: 1f84376ce564cf74ab0863c8368808a8
   m_configObjects: {}
