@@ -7,7 +7,8 @@ public class ReadTXT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TextAsset asset = Resources.Load("stage1") as TextAsset;
+        int a = 1;
+        TextAsset asset = Resources.Load("stage" + a.ToString()) as TextAsset;
         print(asset.text);
     }
 

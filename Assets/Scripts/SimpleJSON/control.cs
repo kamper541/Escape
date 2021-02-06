@@ -75,6 +75,8 @@ public class control : MonoBehaviour
                     Debug.Log("Something goes wrong: " + payload.data);
                 }
                 });
+
+                return;
             });
         }catch{
             print("nope");
