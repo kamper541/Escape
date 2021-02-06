@@ -3673,6 +3673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d5ed192a55f437085243386de9dea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myUITransfrom: {fileID: 0}
+  yourButton: {fileID: 0}
 --- !u!1001 &829135052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7254,6 +7256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestTreeDShort (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1398384037247820, guid: 018e38b65bc9fb048a9c4271cdad70c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4666323329268654, guid: 018e38b65bc9fb048a9c4271cdad70c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.98
@@ -8272,6 +8278,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27566fe4d177d4b1e918f984411f43fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSmoothing: 10
+  rotationSmoothing: 15
+  zoomOutMin: 1
+  zoomOutMax: 18
+  KingCam: {fileID: 0}
+  MainCam: {fileID: 0}
+  controller: {fileID: 0}
+  cam: {fileID: 0}
+  speed: 6
+  turnSnoothTime: 0.1
 --- !u!4 &1830248974
 Transform:
   m_ObjectHideFlags: 0

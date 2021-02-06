@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Newtonsoft.Json.Linq;
 
 public class control : MonoBehaviour
@@ -11,6 +12,8 @@ public class control : MonoBehaviour
 
     [SerializeField]
     RectTransform myUITransfrom;
+
+    public Button yourButton;
 
     static bool Begin = false;
     static private JEnumerable<JToken> Inside_Payload = new JEnumerable<JToken>();
@@ -33,6 +36,10 @@ public class control : MonoBehaviour
 
     void Start()
     {
+
+        Button btn = yourButton.GetComponent<Button>();
+		btn.onClick.AddListener(TaskOnClick);
+
         var webviewGameObject = new GameObject("UniWebView");
         // var uuu = UniWebViewHelper.StreamingAssetURLForPath("index.html");
         // url = Path.Combine(Application.streamingAssetsPath, "SampleVideo_1280x720_5mb.mp4");
@@ -48,12 +55,30 @@ public class control : MonoBehaviour
         webView.AddUrlScheme("code");
         webView.Show();
         webView.OnPageFinished += (view , statusCode , url) => {
-            // return true;
+            
         };
         webView.OnShouldClose += (view) => {
             webView = null;
             return true;
         };
+    }
+
+    void TaskOnClick(){
+        Debug.Log ("You have clicked the button!");
+        try{
+            webView.AddJavaScript("function call_sak_tee(){console.log(`123`);}" , (payloads) => {
+
+                webView.EvaluateJavaScript("call_sak_tee();", (payload)=>{
+                if (payload.resultCode.Equals("0")) {
+                    Debug.Log("Clicked!");
+                } else {
+                    Debug.Log("Something goes wrong: " + payload.data);
+                }
+                });
+            });
+        }catch{
+            print("nope");
+        }
     }
 
     // Update is called once per frame

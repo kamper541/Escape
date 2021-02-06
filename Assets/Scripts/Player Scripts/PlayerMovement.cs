@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     public  float zPost;
 
+    public  float xPost;
+
+    public  float yAxis;
+
     public  float angle;
 
     public  int framePerU;
@@ -37,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Start() {
-        this.transform.position = new Vector3(0 , 5 ,0);
-        this.transform.rotation = new Quaternion(0 , 0 , 0 ,0);
+        this.transform.position = new Vector3(xPost , 5 ,zPost);
+        this.transform.rotation = new Quaternion(0 , yAxis , 0 ,0);
         oldEulerAngles = this.transform.rotation.eulerAngles;
         zPost = this.transform.localPosition.z;
         angle = this.transform.rotation.y;
