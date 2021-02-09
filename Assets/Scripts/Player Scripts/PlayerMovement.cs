@@ -22,9 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 oldEulerAngles;
 
-    public  float zPost;
-
     public  float xPost;
+
+    public  float yPost;    
+
+    public  float zPost;
 
     public  float yAxis;
 
@@ -41,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Start() {
-        this.transform.position = new Vector3(xPost , 5 ,zPost);
+        this.transform.position = new Vector3(xPost , yPost ,zPost);
         this.transform.rotation = new Quaternion(0 , yAxis , 0 ,0);
         oldEulerAngles = this.transform.rotation.eulerAngles;
         zPost = this.transform.localPosition.z;
@@ -89,53 +91,46 @@ public class PlayerMovement : MonoBehaviour
             print("turn");
             RotatePlayer(Listener.get_degree());
         }
+        else if(Listener.get_to_jump() == true){
+            print("jump");
+            Jump();
+        }
     }
-    void GetInput(){
-        // if(Input.GetMouseButtonDown(0)){
-        //     canMove = true;
-        //     finish = false;
-        // }else if (Input.GetMouseButtonUp(0)){
-        //     canMove = false;
-        //     finish = true;
-        // }
-    }
+
     void UpdateForward(){
         transform.forward = Vector3.Slerp(
             transform.forward, targetForward, Time.deltaTime * smoothMovement
         );
     }
+
     public void MovePlayer(float ans){
         Debug.Log("Moving Player" + ans);
-            if(framePerU == 20 * ans){
-                // RunBlock.setRunning();
-                Listener.toggle_to_move();
-                print(Listener.get_to_move());
-                zPost = this.transform.localPosition.z;
-                framePerU = 0;
-            }else{
-             transform.Translate(Vector3.forward * Time.deltaTime * 5.0f);
-             framePerU++;
-            }
+        if(framePerU == 20 * ans){
+            Listener.toggle_to_move();
+            print(Listener.get_to_move());
+            zPost = this.transform.localPosition.z;
+            framePerU = 0;
+        }else{
+            transform.Translate(Vector3.forward * Time.deltaTime * 5.0f);
+            framePerU++;
+        }
     }
 
-
     public void RotatePlayer(float ans){
-
-        //Debug.Log("Rotating");
-        
-        // if(this.transform.rotation.eulerAngles.y >= angle + 90){
-        //     RunBlock.setRotating();
-        //     angle = this.transform.rotation.eulerAngles.y;
-        // }else{
-        // // float tar = this.transform.rotation.y + ans;
-        // // Quaternion target = Quaternion.Euler(0.0f, tar, 0.0f);
-        // // this.transform.rotation = Quaternion.Slerp(this.transform.rotation, target,  Time.deltaTime * 5.0f);
-        // // yield return new WaitForSeconds(2f);
-        // transform.Rotate(0 , 90 , 0);
-        // }
         transform.Rotate(0 , this.transform.rotation.y + ans , 0);
         Listener.toggle_to_turn();
         Debug.Log(angle);
+    }
+
+    public void Jump()
+    {
+        if(framePerU == 20.0f){
+            Listener.toggle_to_jump();
+            framePerU = 0;
+        }else{
+            transform.Translate(Vector3.up * Time.deltaTime * 9.8f);
+            framePerU ++;
+        }
     }
 
 }

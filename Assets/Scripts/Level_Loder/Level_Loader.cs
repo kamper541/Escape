@@ -7,10 +7,17 @@ public class Level_Loader : MonoBehaviour
 {
     // Start is called before the first frame update
     private Animation anim;
+    public bool openDoor = true;
 
     void Start()
     {
         anim = this.GetComponent<Animation>();
+
+        // if(openDoor)
+        // {
+        //     anim.Play("OpenDoors");
+        //     openDoor = false;
+        // }
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -24,6 +31,7 @@ public class Level_Loader : MonoBehaviour
 
     private void To_Next_Stage()
     {
+        PlayerPrefs.SetInt("ReachedLevel", PlayerPrefs.GetInt("ReachedLevel") + 1);
         SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
 

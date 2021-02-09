@@ -64,22 +64,37 @@ public class control : MonoBehaviour
     }
 
     void TaskOnClick(){
-        Debug.Log ("You have clicked the button!");
         try{
-            webView.AddJavaScript("function call_sak_tee(){console.log(`123`);}" , (payloads) => {
-
-                webView.EvaluateJavaScript("call_sak_tee();", (payload)=>{
-                if (payload.resultCode.Equals("0")) {
+            webView.EvaluateJavaScript("defined();", (payload)=>{
+            if (payload.resultCode.Equals("0"))
+            {
+                try
+                {
+                    //new
                     Debug.Log("Clicked!");
-                } else {
-                    Debug.Log("Something goes wrong: " + payload.data);
-                }
-                });
+                    JObject o = JObject.Parse(payload.data);
+                    JEnumerable<JToken> jt = o["payload"].Children();
 
-                return;
+                    // foreach(JToken token in jt){
+                    //     print(token);  
+                    // }
+
+                    Inside_Payload = jt;
+                    Begin = true;
+                    print(Begin);
+                }
+                catch(Exception e)
+                {
+                    print(e);
+                }
+            }
+            else
+            {
+                Debug.Log("Something goes wrong: " + payload.data);
+            }
             });
-        }catch{
-            print("nope");
+        }catch(Exception error){
+            print(error);
         }
     }
 
@@ -91,17 +106,16 @@ public class control : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if(webView == null){
-            return;
-        }
-        webView.OnMessageReceived += (view, message) => {
-            JObject o = JObject.Parse(message.Path);
-            JEnumerable<JToken> jt = o["payload"].Children();
-            Inside_Payload = jt;
-            Begin = true;
-        };
-        Begin = false;
-        webView = null;
+        // if(webView == null){
+        //     return;
+        // }
+        // webView.OnMessageReceived += (view, message) => {
+        //     JObject o = JObject.Parse(message.Path);
+        //     JEnumerable<JToken> jt = o["payload"].Children();
+        //     Inside_Payload = jt;
+        //     Begin = true;
+        // };
+        // Begin = false;
     }
 
     

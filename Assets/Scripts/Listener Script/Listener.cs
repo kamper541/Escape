@@ -14,6 +14,8 @@ public class Listener : MonoBehaviour
 
     private static bool to_turn = false;
 
+    private static bool to_jump = false;
+
     private static float steps;
 
     private static float degree;
@@ -42,38 +44,53 @@ public class Listener : MonoBehaviour
         to_turn = false;
     }
 
+    public static bool get_to_jump(){
+        return to_jump;
+    }
+
+    public static void toggle_to_jump(){
+        to_jump = false;
+    }
+
     //<--- get set
 
     // Start is called before the first frame update
     void Start()
     {
-        print("Listening..");
+        // print("Listening..");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!Activated){
-            if(control.Get_Begin()){
+        if(!Activated)
+        {
+            if(control.Get_Begin())
+            {
                 Activated = true;
-                try{
+                try
+                {
                     JEnumerable<JToken> jt = control.Get_JToken();
-                    foreach(JToken token in jt){
+                    foreach(JToken token in jt)
+                    {
                         print(token);  
                     }
                     StartCoroutine(Reading_Block(jt));
-                }catch(Exception e){
+                }
+                catch(Exception e)
+                {
                     print(e);
                 }
             }
-        }else{
+        }
+        else
+        {
 
         }
     }
 
     public IEnumerator Reading_Block(JEnumerable<JToken> jt_get){
         foreach(JToken token in jt_get ){
-            print("Reading...");
             if((string)token["name"] == "move"){
                 float val = (float)token["value"];
                 steps = val;
@@ -88,10 +105,15 @@ public class Listener : MonoBehaviour
                 yield return new WaitWhile(() => to_turn == true);
                 degree = 0;
             }
+            else if((string)token["name"] == "jump"){
+                to_jump = true;
+                yield return new WaitWhile(() => to_jump == true);
+            }
         }
         print("Activated");
         control.Set_Begin();
         Activated = false;
+        control.Set_Begin();
     }
 
     
