@@ -67,6 +67,7 @@ public class LevelLoader : MonoBehaviour
 
     void Go_to_next()
     {
+      print("goto" + SceneManager.GetActiveScene().buildIndex);
       PlayerPrefs.SetInt("ReachedLevel", PlayerPrefs.GetInt("ReachedLevel") + 1);
       SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }

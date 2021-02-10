@@ -13,11 +13,11 @@ public class Level_Loader : MonoBehaviour
     {
         anim = this.GetComponent<Animation>();
 
-        // if(openDoor)
-        // {
-        //     anim.Play("OpenDoors");
-        //     openDoor = false;
-        // }
+        if(openDoor)
+        {
+            // anim.Play("OpenDoors");
+            // openDoor = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other) 
