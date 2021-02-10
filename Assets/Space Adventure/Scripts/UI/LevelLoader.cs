@@ -12,15 +12,24 @@ public class LevelLoader : MonoBehaviour
 
     private Animation anim;
 
+    public static bool do_it;
+
     void Start()
     {
       anim = this.GetComponent<Animation>();
-
+      do_it = false;
       // When scene starts check if doors has to be opened and play door open animation.
       if(openDoor)
       {
         anim.Play("OpenDoors");
         openDoor = false;
+      }
+    }
+
+    void Update(){
+      if(do_it)
+      {
+        To_Next_Stage();
       }
     }
 
@@ -37,6 +46,29 @@ public class LevelLoader : MonoBehaviour
 
     public void Load_Now(){
       SceneManager.LoadScene (Scene_now);
+    }
+
+    
+    // private void OnTriggerEnter(Collider other) 
+    // {
+    //     if(other.CompareTag("Player"))
+    //     {
+    //         anim.Play("CloseDoors");
+    //         Invoke("To_Next_Stage",1.0f);
+    //     }
+    // }
+
+    private void To_Next_Stage()
+    {
+        do_it = false;
+        anim.Play("CloseDoors");
+        Invoke("Go_to_next",2.0f);
+    }
+
+    void Go_to_next()
+    {
+      PlayerPrefs.SetInt("ReachedLevel", PlayerPrefs.GetInt("ReachedLevel") + 1);
+      SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
 
     // public void LoadLevel_Next()

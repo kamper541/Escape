@@ -25,14 +25,20 @@ public class Level_Loader : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             // anim.Play("CloseDoors");
-            Invoke("To_Next_Stage",1.0f);
+            Invoke("To_Next_Stage",2.0f);
         }
     }
 
+    // private void To_Next_Stage()
+    // {
+
+    //     PlayerPrefs.SetInt("ReachedLevel", PlayerPrefs.GetInt("ReachedLevel") + 1);
+    //     SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+    // }
+
     private void To_Next_Stage()
     {
-        PlayerPrefs.SetInt("ReachedLevel", PlayerPrefs.GetInt("ReachedLevel") + 1);
-        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        LevelLoader.do_it = true; 
     }
 
 }

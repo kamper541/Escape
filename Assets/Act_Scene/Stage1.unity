@@ -812,6 +812,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4310614304489658, guid: 5cbae0602ce9acf41a98fda3a353569a, type: 3}
   m_PrefabInstance: {fileID: 1712796486}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &324506750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7428378067901345887, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
+  m_PrefabInstance: {fileID: 1037909723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ab3f03f4bf19f40b8f65a5fea4d6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &336621889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,7 +1272,7 @@ MonoBehaviour:
   moveSpeed: 3
   xPost: 0
   yPost: 0
-  zPost: 0
+  zPost: 1
   yAxis: 0
   angle: 0
   framePerU: 0
@@ -1507,11 +1518,32 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 41d60b672fb2ec64ab5e182562087c5c, type: 2}
+  - {fileID: 7400000, guid: 9dbeba560c21d5a4d82dc2d1c18850a5, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!95 &849700419
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849700416}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &849700421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1932,7 +1964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7428378068253508650, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7428378068253508650, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1993,7 +2025,7 @@ PrefabInstance:
     - target: {fileID: 7428378068253508652, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
       propertyPath: loadBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 324506750}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
 --- !u!1001 &1048509114
