@@ -8,6 +8,7 @@ public class Level_Loader : MonoBehaviour
     // Start is called before the first frame update
     private Animation anim;
     public bool openDoor = true;
+    public bool Collide = false;
 
     void Start()
     {
@@ -25,9 +26,28 @@ public class Level_Loader : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             // anim.Play("CloseDoors");
-            Invoke("To_Next_Stage",2.0f);
+            print("Hit");
+            Collide = true;
+            Invoke("Check_Collide",2.0f);
         }
     }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.CompareTag("Player"))
+        {
+            print("Not Hit");
+            Collide = false;
+        }
+    }
+
+    private void Check_Collide(){
+        if(Collide){
+            Invoke("To_Next_Stage",1.0f);
+        }else{
+            print("Cheat!!!!");
+        }
+    }
+
 
     // private void To_Next_Stage()
     // {

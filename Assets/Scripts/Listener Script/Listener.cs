@@ -71,10 +71,10 @@ public class Listener : MonoBehaviour
                 try
                 {
                     JEnumerable<JToken> jt = control.Get_JToken();
-                    foreach(JToken token in jt)
-                    {
-                        print(token);  
-                    }
+                    // foreach(JToken token in jt)
+                    // {
+                    //     print(token);  
+                    // }
                     StartCoroutine(Reading_Block(jt));
                 }
                 catch(Exception e)
@@ -91,6 +91,7 @@ public class Listener : MonoBehaviour
 
     public IEnumerator Reading_Block(JEnumerable<JToken> jt_get){
         foreach(JToken token in jt_get ){
+            print((string)token["name"]);
             if((string)token["name"] == "move"){
                 float val = (float)token["value"];
                 steps = val;
@@ -99,8 +100,15 @@ public class Listener : MonoBehaviour
                 steps = 0;
             }
             else if((string)token["name"] == "turn"){
-                float val = (float)token["value"];
-                degree = val;
+                string val = (string)token["value"];
+                if(val == "left")
+                {
+                    degree = (float)(-90.0);
+                }
+                else if(val == "right")
+                {
+                    degree = (float)90.0;
+                }
                 to_turn = true;
                 yield return new WaitWhile(() => to_turn == true);
                 degree = 0;
@@ -108,6 +116,10 @@ public class Listener : MonoBehaviour
             else if((string)token["name"] == "jump"){
                 to_jump = true;
                 yield return new WaitWhile(() => to_jump == true);
+                steps = 1;
+                to_move = true;
+                yield return new WaitWhile(() => to_move == true);
+                steps = 0;
             }
         }
         print("Activated");

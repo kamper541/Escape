@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,10 +33,25 @@ public class PlayerMovement : MonoBehaviour
 
     public  float angle;
 
+    public  float angle_d;
+
     public  int framePerU;
 
     private static float step;
 
+    float Current_Angle;
+
+    private float desiredRot;
+
+    public int interpolationFramesCount = 45; // Number of frames to completely interpolate between the 2 positions
+
+    int elapsedFrames = 0;
+
+    float timer = 0;
+
+    bool timerReached = false;
+
+    private bool Turning = false;
 
     public  bool getFinish(){
         return finish;
@@ -83,13 +99,16 @@ public class PlayerMovement : MonoBehaviour
         // else if(RunBlock.getRunning() == true){
         // MovePlayer(RunBlock.getSteps());
         // }
+        print("Movement");
         if(Listener.get_to_move() == true){
             print("move");
             MovePlayer(Listener.get_steps());
         }
         else if(Listener.get_to_turn() == true){
-            print("turn");
-            RotatePlayer(Listener.get_degree());
+            if(!Turning) 
+            {
+                StartCoroutine(RotateMe(Vector3.up * (Listener.get_degree()) , 1.0f));
+            }
         }
         else if(Listener.get_to_jump() == true){
             print("jump");
@@ -117,10 +136,28 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void RotatePlayer(float ans){
-        transform.Rotate(0 , this.transform.rotation.y + ans , 0);
-        Listener.toggle_to_turn();
-        Debug.Log(angle);
+        // transform.Rotate(0 , this.transform.rotation.y + desiredRot / 8 , 0);
+        // print(this.transform.rotation.y);
+        // if(framePerU == 20){
+        //     Listener.toggle_to_turn();
+        //     framePerU = 0;
+        // }else{
+        //     transform.Rotate(Vector3.up * Time.deltaTime * 5.0f);
+        //     framePerU++;
+        // }
     }
+
+    IEnumerator RotateMe(Vector3 byAngles, float inTime) {
+        Turning = true;
+        var fromAngle = transform.rotation;
+        var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+        for(var t = 0f; t < 1; t += Time.deltaTime/inTime) {
+            transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
+            yield return null;
+        }
+        Listener.toggle_to_turn();
+        Turning = false;
+      }
 
     public void Jump()
     {

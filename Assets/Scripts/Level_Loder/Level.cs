@@ -19,10 +19,10 @@ public class Level : MonoBehaviour
         {
             LevelButtons[i] = transform.GetChild(i).GetComponent<Button>();
             LevelButtons[i].GetComponentInChildren<Text>().text = (i + 1).ToString();
-            if(i + 1 > ReachedLevel)
-            {
-                LevelButtons[i].interactable = false;
-            }
+            // if(i + 1 > ReachedLevel)
+            // {
+            //     LevelButtons[i].interactable = false;
+            // }
         }
     }
 
