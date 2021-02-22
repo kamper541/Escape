@@ -49,7 +49,6 @@ public class control : MonoBehaviour
         webView.ReferenceRectTransform = myUITransfrom;
         // webView.Load("https://www.google.com");
         webView.Load("https://edo-controller.web.app");
-        webView.SetHorizontalScrollBarEnabled(true);
         // webView.Load("localhost:5000");
         webView.CleanCache();
         UniWebView.ClearCookies();

@@ -22,6 +22,14 @@ public class LevelLoader : MonoBehaviour
 
     public static bool PlayAnim;
 
+    public static void close_web(){
+      closing = true;
+    }
+
+
+    private void Awake() {
+      print(PlayerPrefs.GetInt("Level1"));
+    }
 
 
     void Start()
@@ -43,6 +51,20 @@ public class LevelLoader : MonoBehaviour
       {
         To_Next_Stage();
       }
+    }
+
+    public void Load_Restart(){
+      closing = true;
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Load_Next(){
+      Invoke("set_lvl_loader",0.5f);
+    }
+
+    public void set_lvl_loader(){
+      closing = true;
+      do_it = true;
     }
 
     // Used to load next level.
@@ -93,8 +115,8 @@ public class LevelLoader : MonoBehaviour
     private void Set_Inactive()
     {
       try{
-      UIe = GameObject.FindGameObjectWithTag("UI");
-      UIe.SetActive(false);
+        UIe = GameObject.FindGameObjectWithTag("UI");
+        UIe.SetActive(false);
       }catch{
         return;
       }
@@ -115,29 +137,4 @@ public class LevelLoader : MonoBehaviour
       SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
 
-    // public void LoadLevel_Next()
-    // {
-      
-    // }
-
-    // IEnumerator LoadLevelAsync(int sceneIndex)
-    // {
-    //   // Delay for door close animation.
-    //   yield return new WaitForSeconds(0.5f);
-
-    //   // Loading scene async and getting loading progress.
-    //   AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-
-    //   // While loading isn't done.
-    //   while(!operation.isDone)
-    //   {
-    //     // Get loading progress.
-    //     float progress = Mathf.Clamp01(operation.progress / 0.9f);
-    //     // Load progress to the loadbar.
-    //     loadBar.progress = 1 - progress;
-    //     yield return null;
-    //     // Save loadbar rotation for the next scene.
-    //     loadBar.saveRotation();
-    //   }
-    // }
 }

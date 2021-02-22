@@ -3483,24 +3483,14 @@ PrefabInstance:
       propertyPath: loadBar
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7428378068253508652, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
 --- !u!224 &588600438 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7428378068253508650, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
   m_PrefabInstance: {fileID: 588600437}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &588600439 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7428378068253508652, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
-  m_PrefabInstance: {fileID: 588600437}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8894fba808b6a4a9da036c137dc62c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &590401794
 GameObject:
   m_ObjectHideFlags: 0
@@ -8260,6 +8250,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378363294}
   m_CullTransparentMesh: 0
+--- !u!1 &1382219509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7428378068253508649, guid: bdf6e360130e68f44ae1bb9c76596fae, type: 3}
+  m_PrefabInstance: {fileID: 588600437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1382219511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382219509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6017f398768c5455881f87107fc8f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openDoor: 1
+  Scene_now: 0
+  loadBar: {fileID: 0}
 --- !u!1 &1439400004
 GameObject:
   m_ObjectHideFlags: 0
@@ -10365,7 +10375,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 588600439}
+      - m_Target: {fileID: 1382219511}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 3
@@ -16443,7 +16453,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 588600439}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 3

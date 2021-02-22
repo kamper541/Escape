@@ -78,17 +78,11 @@ public class PlayerMovement : MonoBehaviour
     //Update is called once per frame
         void Update()
         {
-        // if(MenuScript.closing){
-        //     RunBlock.setRunning();
-        //     RunBlock.setRotating();
-        //     RunBlock.setActivate();
-        // }
-        // if(this.transform.position.y < -5f){
-        //     RunBlock.setRunning();
-        //     RunBlock.setRotating();
-        //     RunBlock.setActivate();
-        //     SceneManager.LoadScene("GameOver");
-        // }
+        
+            if(this.transform.position.y < -5f){
+                Wait_Dead.dead_or_not = true;    
+            }
+
         }
 
     void FixedUpdate() {
@@ -135,17 +129,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void RotatePlayer(float ans){
-        // transform.Rotate(0 , this.transform.rotation.y + desiredRot / 8 , 0);
-        // print(this.transform.rotation.y);
-        // if(framePerU == 20){
-        //     Listener.toggle_to_turn();
-        //     framePerU = 0;
-        // }else{
-        //     transform.Rotate(Vector3.up * Time.deltaTime * 5.0f);
-        //     framePerU++;
-        // }
-    }
 
     IEnumerator RotateMe(Vector3 byAngles, float inTime) {
         Turning = true;
@@ -158,6 +141,17 @@ public class PlayerMovement : MonoBehaviour
         Listener.toggle_to_turn();
         Turning = false;
       }
+    public void RotatePlayer(float ans){
+        // transform.Rotate(0 , this.transform.rotation.y + desiredRot / 8 , 0);
+        // print(this.transform.rotation.y);
+        // if(framePerU == 20){
+        //     Listener.toggle_to_turn();
+        //     framePerU = 0;
+        // }else{
+        //     transform.Rotate(Vector3.up * Time.deltaTime * 5.0f);
+        //     framePerU++;
+        // }
+    }
 
     public void Jump()
     {

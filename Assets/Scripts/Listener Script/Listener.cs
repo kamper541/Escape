@@ -16,9 +16,15 @@ public class Listener : MonoBehaviour
 
     private static bool to_jump = false;
 
+    private static int num_block;
+
     private static float steps;
 
     private static float degree;
+
+    public static int get_num_block(){
+        return num_block;
+    }
 
     public static float get_steps(){
         return steps;
@@ -58,6 +64,7 @@ public class Listener : MonoBehaviour
     void Start()
     {
         // print("Listening..");
+        num_block = 0;
     }
 
     // Update is called once per frame
@@ -95,6 +102,7 @@ public class Listener : MonoBehaviour
             if((string)token["name"] == "move"){
                 float val = (float)token["value"];
                 steps = val;
+                num_block ++;
                 to_move = true;
                 yield return new WaitWhile(() => to_move == true);
                 steps = 0;
@@ -121,11 +129,17 @@ public class Listener : MonoBehaviour
                 yield return new WaitWhile(() => to_move == true);
                 steps = 0;
             }
+            num_block ++;
         }
+        Invoke("call_dead",2.5f);
         print("Activated");
         control.Set_Begin();
         Activated = false;
         control.Set_Begin();
+    }
+
+    void call_dead(){
+        Wait_Dead.dead_or_not = true;
     }
 
     

@@ -42,9 +42,9 @@ public class Level_Loader : MonoBehaviour
 
     private void Check_Collide(){
         if(Collide){
-            Invoke("To_Next_Stage",1.0f);
+            Wait_Win.win_or_not = true;
         }else{
-            print("Cheat!!!!");
+            Wait_Dead.dead_or_not = true;
         }
     }
 

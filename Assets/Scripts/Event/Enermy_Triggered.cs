@@ -20,9 +20,9 @@ public class Enermy_Triggered : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("player"))
+        if(other.CompareTag("Player"))
         {
-            // UIe = GameObject.FindGameObjectsWithTag("UI Canvas");
+            Wait_Dead.dead_or_not = true;
         }
     }
 }
