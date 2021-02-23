@@ -25,7 +25,7 @@ public class rotateObjecct : MonoBehaviour
 
 	void Update()
 	{
-		Debug.Log(Input.mousePosition.x);
+		//Debug.Log(Input.mousePosition.x);
 		if (rotateStatus == true)
 		{
 			//rotate object with speed
