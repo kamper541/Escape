@@ -6,29 +6,29 @@ using Newtonsoft.Json.Linq;
 
 public class LevelLoader : MonoBehaviour
 {
-    public bool openDoor = true;
+  public bool openDoor = true;
 
-    public int Scene_now = 0;
+  public int Scene_now = 0;
 
-    public LoadBar loadBar;
+  public LoadBar loadBar;
 
-    private Animation anim;
+  private Animation anim;
 
-    public static bool do_it;
+  public static bool do_it;
 
-    private GameObject UIe;
+  private GameObject UIe;
 
-    public static bool closing;
+  public static bool closing;
 
-    public static bool PlayAnim;
+  public static bool PlayAnim;
 
-    public static void close_web(){
+  public static void close_web(){
       closing = true;
     }
 
 
     private void Awake() {
-      print(PlayerPrefs.GetInt("Level1"));
+      print(PlayerPrefs.GetInt(SceneManager.GetActiveScene().name));
     }
 
 

@@ -25,7 +25,6 @@ public class Level_Loader : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            SendMessage("Finnish");
             // anim.Play("CloseDoors");
             print("Hit");
             Collide = true;

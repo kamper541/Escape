@@ -27,7 +27,8 @@ public class Wait_Win : MonoBehaviour
             try{
                 print(Listener.get_num_block());
                 int num = PlayerPrefs.GetInt("ReachedLevel");
-                PlayerPrefs.SetInt($"Level{num + 1}", Listener.get_num_block());
+                //PlayerPrefs.SetInt($"Level{num + 1}", Listener.get_num_block());
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name , Listener.get_num_block());
                 LevelLoader.close_web();
                 UIe.SetActive(true);
             }catch(Exception error){
