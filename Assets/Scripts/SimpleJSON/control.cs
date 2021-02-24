@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Linq;
 
 public class control : MonoBehaviour
@@ -32,6 +33,8 @@ public class control : MonoBehaviour
         return Begin;
     }
 
+    public bool is_display = false;
+
     //-----Start Here-----
 
     void Start()
@@ -44,6 +47,7 @@ public class control : MonoBehaviour
         // var uuu = UniWebViewHelper.StreamingAssetURLForPath("index.html");
         // url = Path.Combine(Application.streamingAssetsPath, "SampleVideo_1280x720_5mb.mp4");
         // Debug.Log(Application.streamingAssetsPath);
+        is_display = false;
         webView = webviewGameObject.AddComponent<UniWebView>();
         webView.Frame = new Rect(0 , 0 , Screen.width , Screen.height);
         webView.ReferenceRectTransform = myUITransfrom;
@@ -55,7 +59,30 @@ public class control : MonoBehaviour
         webView.AddUrlScheme("code");
         webView.Show();
         webView.OnPageFinished += (view , statusCode , url) => {
-            
+            if(!is_display){
+            is_display = true;
+            string stg_name = SceneManager.GetActiveScene().name;
+            print("last " + stg_name[stg_name.Length - 1]);
+            if((stg_name[stg_name.Length - 1] == '1') || (stg_name[stg_name.Length - 1] == '2' )){
+                try{
+                    webView.EvaluateJavaScript("display1();", (payload) => {
+                        print(payload);
+                        print(payload.data);
+                    });
+                }catch(Exception e){
+                    print(e);
+                }
+            }
+            else{
+                try{
+                    webView.EvaluateJavaScript("display2();", (payload) => {
+                        print("display2");
+                    });
+                }catch(Exception e){
+                    print(e);
+                }
+            }
+        }
         };
         webView.OnShouldClose += (view) => {
             webView = null;
@@ -101,12 +128,14 @@ public class control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(LevelLoader.closing == true)
         {
             print("WebView is Closing");
             webView.Hide();
             // Destroy(this);
         }
+
         
     }
 

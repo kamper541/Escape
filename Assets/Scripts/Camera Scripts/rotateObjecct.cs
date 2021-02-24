@@ -6,7 +6,7 @@ public class rotateObjecct : MonoBehaviour
 {
     public GameObject objectRotate;
 
-	public float rotateSpeed = 50f;
+	public float rotateSpeed = 15f;
 	bool rotateStatus = false;
 
 	//rotate object function
