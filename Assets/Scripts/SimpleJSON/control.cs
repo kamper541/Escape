@@ -66,8 +66,6 @@ public class control : MonoBehaviour
             if((stg_name[stg_name.Length - 1] == '1') || (stg_name[stg_name.Length - 1] == '2' )){
                 try{
                     webView.EvaluateJavaScript("display1();", (payload) => {
-                        print(payload);
-                        print(payload.data);
                     });
                 }catch(Exception e){
                     print(e);
@@ -76,7 +74,6 @@ public class control : MonoBehaviour
             else{
                 try{
                     webView.EvaluateJavaScript("display2();", (payload) => {
-                        print("display2");
                     });
                 }catch(Exception e){
                     print(e);
