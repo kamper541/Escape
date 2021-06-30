@@ -33,21 +33,21 @@ EditorBuildSettings:
     path: Assets/Act_Scene/Stage7.unity
     guid: f660fee8e3c4049daafb7a3e5b1a1252
   - enabled: 1
-    path: Assets/Act_Scene/Stagex1.unity
+    path: Assets/Act_Scene/Stage1x.unity
     guid: 695b9368295a54b4e830a6a7aa0e00d1
   - enabled: 1
-    path: Assets/Act_Scene/Stagex2.unity
+    path: Assets/Act_Scene/Stage2x.unity
     guid: f5c94fed5c3b52b4aa7e4c39fd45fad5
   - enabled: 1
-    path: Assets/Act_Scene/Stagex3.unity
+    path: Assets/Act_Scene/Stage3x.unity
     guid: e8d28afbd98d78e48a8a65540f131c0f
   - enabled: 1
-    path: Assets/Act_Scene/Stagey1.unity
+    path: Assets/Act_Scene/Stage1y.unity
     guid: 2b8c2877aef5ac947837f1b515da12fc
   - enabled: 1
-    path: Assets/Act_Scene/Stagey2.unity
+    path: Assets/Act_Scene/Stage2y.unity
     guid: e4d7bf799ded53440a4e1e6ae89bb3b3
   - enabled: 1
-    path: Assets/Act_Scene/Stagey3.unity
+    path: Assets/Act_Scene/Stage3y.unity
     guid: 1ee305fba173d574694322170f8caa11
   m_configObjects: {}

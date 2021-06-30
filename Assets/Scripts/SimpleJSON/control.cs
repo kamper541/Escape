@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Linq;
 
+//onclick
+
 public class control : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -53,6 +55,10 @@ public class control : MonoBehaviour
         webView.ReferenceRectTransform = myUITransfrom;
         // webView.Load("https://www.google.com");
         webView.Load("https://edo-controller.web.app");
+        //var indexURL = UniWebViewHelper.StreamingAssetURLForPath("pages/index.html");
+        //var accessURL = UniWebViewHelper.StreamingAssetURLForPath("/");
+        //webView.Load(indexURL, true, accessURL);
+        //webView.Load("https://www.google.com");
         // webView.Load("localhost:5000");
         webView.CleanCache();
         UniWebView.ClearCookies();
@@ -66,6 +72,14 @@ public class control : MonoBehaviour
             if((stg_name[stg_name.Length - 1] == '1') || (stg_name[stg_name.Length - 1] == '2' )){
                 try{
                     webView.EvaluateJavaScript("display1();", (payload) => {
+                    });
+                }catch(Exception e){
+                    print(e);
+                }
+            }
+            else if((stg_name[stg_name.Length - 1] == 'x') || (stg_name[stg_name.Length - 1] == 'y' )){
+                try{
+                    webView.EvaluateJavaScript("display3();", (payload) => {
                     });
                 }catch(Exception e){
                     print(e);
@@ -98,11 +112,10 @@ public class control : MonoBehaviour
                     Debug.Log("Clicked!");
                     JObject o = JObject.Parse(payload.data);
                     JEnumerable<JToken> jt = o["payload"].Children();
-
+                    print(o);
                     // foreach(JToken token in jt){
-                    //     print(token);  
+                    //     print(token);
                     // }
-
                     Inside_Payload = jt;
                     Begin = true;
                     print(Begin);

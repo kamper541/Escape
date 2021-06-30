@@ -3,9 +3,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Linq;
+using Optional;
+using Optional.Linq; // Linq query syntax support
+using Optional.Unsafe; // Unsafe value retrieval
 
 public class LevelLoader : MonoBehaviour
 {
+  public Option<int> option = new Option<int>();
+
   public bool openDoor = true;
 
   public int Scene_now = 0;
@@ -28,7 +33,10 @@ public class LevelLoader : MonoBehaviour
 
 
     private void Awake() {
-      print(PlayerPrefs.GetInt(SceneManager.GetActiveScene().name));
+        print(PlayerPrefs.GetInt(SceneManager.GetActiveScene().name));
+        option = 11.Some();
+        var num = option.ValueOr(10);
+        print(num);
     }
 
 

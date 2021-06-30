@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockly Demo: Fixed Blockly</title>
+  <script src="fromGoogle/blockly_compressed.js"></script>
+  <script src="fromGoogle/blocks_compressed.js"></script>
+  <script src="fromGoogle/en.js"></script>
+  <script src="fromGoogle/javascript_compressed.js"></script>
+  <script src="https://unpkg.com/esprima@~4.0/dist/esprima.js"></script>
+    <!-- defined -->
+<script src="my_block/my_block.js"></script>
+
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+
+<script src="/__/firebase/8.1.2/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/8.1.2/firebase-analytics.js"></script>
+  
+  <!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+</head>
+<body>
+  <p  style="padding-left: 90px" ><button onclick="defined()" style="background-color:E0E0E0; padding: 15px 32px;">RUN1</button></p>
+  <p  style="padding-left: 90px" ><button onclick="displayAll()" style="background-color:E0E0E0; padding: 15px 32px;">RUN2</button></p>  
+  <div id="blocklyDiv" style="height: 900px; width: 1080px;"></div>
+
+  <xml id="toolboxAll" style="display: none">
+    <block type="moving_unit"></block>
+    <block type="turn"></block>
+    <block type="jump"></block>
+    <block type="math_number">
+      <field name="NUM">1</field>
+    </block>
+    <block type="logic_compare"></block>
+    <block type="controls_repeat_ext"></block>
+    <block type="math_arithmetic"></block>
+    <!-- <block type="text"></block> -->
+    <!-- <block type="procedures_defnoreturn"></block> -->
+    <block type="if_state"></block>
+    <!-- <block type="varGame"></block> -->
+    <block type="controls_if"></block>
+    <!-- <block type="move"></block> -->
+    <block type="text_print"></block>
+
+  </xml>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox1" style="display: none">
+    <block type="moving_unit"></block>
+    <block type="math_number">
+        <field name="NUM">1</field>
+    </block>
+  </xml>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox2" style="display: none">
+    <block type="moving_unit"></block>
+    <block type="math_number">
+        <field name="NUM">1</field>
+    </block>
+    <block type="turn"></block>
+  </xml>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox3" style="display: none">
+    <block type="moving_unit"></block>
+    <block type="math_number">
+        <field name="NUM">1</field>
+    </block>
+    <block type="turn"></block>
+    <block type="jump"></block>
+  </xml>
+
+  <!-- <script>
+    var demoWorkspace = Blockly.inject('blocklyDiv',
+        {media: '../../media/',
+         toolbox: document.getElementById('toolbox')});
+  </script> -->
+
+  <!-- <script>
+    // Custom requires for the playground.
+    let workspace = null
+    var match = location.search.match(/dir=([^&]+)/);
+    var rtl = match && match[1] == 'rtl';
+
+    workspace = Blockly.inject('blocklyDiv',
+      {
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid:
+          {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+          },
+        horizontalLayout: false,
+        maxBlocks: Infinity,
+        maxInstances: {'test_basic_limit_instances': 3},
+        maxTrashcanContents: 256,
+        // media: '../media/',
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: rtl,
+        move: {
+          scrollbars: true,
+          // scrollbars: false,
+          drag: true,
+          wheel: false,
+        },
+        toolbox: toolbox,
+        toolboxPosition: 'start',
+        renderer: 'geras',
+        zoom:
+          {
+            // controls: true,
+            // wheel: true,
+            startScale: 0.8,
+            // maxScale: 4,
+            // minScale: 0.25,
+            // scaleSpeed: 1.1
+          }
+      });
+
+      var xml = Blockly.Xml.textToDom(
+      '<xml><block type="start_block" x="20" y="20"></block></xml>'
+    );
+    xml.editable = false;
+    xml.deletable = false;
+    workspace.clear();
+    Blockly.Xml.domToWorkspace(xml, workspace);
+</script> -->
+
+<script>
+    // Custom requires for the playground.
+    let workspace = null
+    var match = location.search.match(/dir=([^&]+)/);
+    var rtl = match && match[1] == 'rtl';
+
+    function display1(){
+
+    workspace = Blockly.inject('blocklyDiv',
+      {
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid:
+          {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+          },
+        horizontalLayout: false,
+        maxBlocks: Infinity,
+        maxInstances: {'test_basic_limit_instances': 3},
+        maxTrashcanContents: 256,
+        // media: '../media/',
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: rtl,
+        move: {
+          scrollbars: true,
+          // scrollbars: false,
+          drag: true,
+          wheel: false,
+        },
+        toolbox: toolbox1,
+        toolboxPosition: 'start',
+        renderer: 'geras',
+        zoom:
+          {
+            // controls: true,
+            // wheel: true,
+            startScale: 0.8,
+            // maxScale: 4,
+            // minScale: 0.25,
+            // scaleSpeed: 1.1
+          }
+      });
+
+      var xml = Blockly.Xml.textToDom(
+      '<xml><block type="start_block" x="20" y="20"></block></xml>'
+    );
+    xml.editable = false;
+    xml.deletable = false;
+    workspace.clear();
+    Blockly.Xml.domToWorkspace(xml, workspace);
+    return "Display 1 from JS";
+    }
+
+    function display2(){
+
+    workspace = Blockly.inject('blocklyDiv',
+      {
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid:
+          {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+          },
+        horizontalLayout: false,
+        maxBlocks: Infinity,
+        maxInstances: {'test_basic_limit_instances': 3},
+        maxTrashcanContents: 256,
+        // media: '../media/',
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: rtl,
+        move: {
+          scrollbars: true,
+          // scrollbars: false,
+          drag: true,
+          wheel: false,
+        },
+        toolbox: toolbox2,
+        toolboxPosition: 'start',
+        renderer: 'geras',
+        zoom:
+          {
+            // controls: true,
+            // wheel: true,
+            startScale: 0.8,
+            // maxScale: 4,
+            // minScale: 0.25,
+            // scaleSpeed: 1.1
+          }
+      });
+
+      var xml = Blockly.Xml.textToDom(
+      '<xml><block type="start_block" x="20" y="20"></block></xml>'
+    );
+    xml.editable = false;
+    xml.deletable = false;
+    workspace.clear();
+    Blockly.Xml.domToWorkspace(xml, workspace);
+    }
+
+    function display3(){
+
+workspace = Blockly.inject('blocklyDiv',
+  {
+    comments: true,
+    collapse: true,
+    disable: true,
+    grid:
+      {
+        spacing: 25,
+        length: 3,
+        colour: '#ccc',
+        snap: true
+      },
+    horizontalLayout: false,
+    maxBlocks: Infinity,
+    maxInstances: {'test_basic_limit_instances': 3},
+    maxTrashcanContents: 256,
+    // media: '../media/',
+    oneBasedIndex: true,
+    readOnly: false,
+    rtl: rtl,
+    move: {
+      scrollbars: true,
+      // scrollbars: false,
+      drag: true,
+      wheel: false,
+    },
+    toolbox: toolbox3,
+    toolboxPosition: 'start',
+    renderer: 'geras',
+    zoom:
+      {
+        // controls: true,
+        // wheel: true,
+        startScale: 0.8,
+        // maxScale: 4,
+        // minScale: 0.25,
+        // scaleSpeed: 1.1
+      }
+  });
+
+        var xml = Blockly.Xml.textToDom(
+        '<xml><block type="start_block" x="20" y="20"></block></xml>'
+      );
+      xml.editable = false;
+      xml.deletable = false;
+      workspace.clear();
+      Blockly.Xml.domToWorkspace(xml, workspace);
+      }
+
+    function displayAll(){
+
+    workspace = Blockly.inject('blocklyDiv',
+      {
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid:
+          {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+          },
+        horizontalLayout: false,
+        maxBlocks: Infinity,
+        maxInstances: {'test_basic_limit_instances': 3},
+        maxTrashcanContents: 256,
+        // media: '../media/',
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: rtl,
+        move: {
+          scrollbars: true,
+          // scrollbars: false,
+          drag: true,
+          wheel: false,
+        },
+        toolbox: toolboxAll,
+        toolboxPosition: 'start',
+        renderer: 'geras',
+        zoom:
+          {
+            // controls: true,
+            // wheel: true,
+            startScale: 0.8,
+            // maxScale: 4,
+            // minScale: 0.25,
+            // scaleSpeed: 1.1
+          }
+      });
+
+      var xml = Blockly.Xml.textToDom(
+      '<xml><block type="start_block" x="20" y="20"></block></xml>'
+    );
+    xml.editable = false;
+    xml.deletable = false;
+    workspace.clear();
+    Blockly.Xml.domToWorkspace(xml, workspace);
+    }
+
+    function defined(){
+        Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        // var what = code.split('\n'); //<---------- problem with "if"
+        let x = String(code)
+        // let y = x.substring(0 , x.length - 1)
+        // console.log(code);
+        let ans = []
+        let check = false
+        for ( i = 0 ; i < x.length ; i++){
+        if(x[i] == "@" && check == false){
+            check = true
+        }
+        else if(x[i] != "@" && check == true){
+            ans.push(x[i])
+        }else if(x[i] == "@" && check == true){
+            check = false
+        }
+        }
+        ans.pop()
+        ans = ans.join("")
+        ans = `{"payload":[` + ans + `]}`
+        console.log(ans)
+        location.href= `code://${ans}?key=1&anotherKey=2`
+        return `${ans}`;
+      }
+
+</script>
+
+<!-- <script src="control.js"></script> -->
+</body>
+</html>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading;
+// using Monadss;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -57,6 +58,10 @@ public class PlayerMovement : MonoBehaviour
         return finish;
 
     }
+
+    int a = 1;
+    int b = 2;
+    int c = 3;
 
     private void Start() {
         this.transform.position = new Vector3(xPost , yPost ,zPost);

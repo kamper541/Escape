@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
+using Optional;
+using Optional.Linq; // Linq query syntax support
+using Optional.Unsafe; // Unsafe value retrieval
 
 public class Listener : MonoBehaviour
 {
     JObject o = new JObject();
+
+    Option<int> oo = new Option<int>();
 
     private bool Activated = false;
 
@@ -65,6 +70,14 @@ public class Listener : MonoBehaviour
     {
         // print("Listening..");
         num_block = 0;
+        // Action<string> action = Console.WriteLine;
+        // Action<string> hello = Hello;
+        // Action<string> goodbye = Goodbye;
+        // action += Hello;
+        // action += (x) => { Console.WriteLine("  Greating {0} from lambda expression", x); };
+        // action("First");  // called WriteLine, Hello, and lambda expression
+        var num = oo.ValueOr(10);
+        print(num);
     }
 
     // Update is called once per frame
